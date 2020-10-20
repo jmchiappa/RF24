@@ -68,15 +68,16 @@ private:
     SoftSPI<SOFT_SPI_MISO_PIN, SOFT_SPI_MOSI_PIN, SOFT_SPI_SCK_PIN, SPI_MODE> spi;
     #elif defined (SPI_UART)
     SPIUARTClass uspi;
+    #else
+    SPIClass *spi_= &SPI;
     #endif
 
     #if defined (RF24_LINUX) || defined (XMEGA_D3) /* XMEGA can use SPI class */
-    SPI spi;
+    SPI &spi;
     #endif
     #if defined (MRAA)
     GPIO gpio;
     #endif
-
     uint16_t ce_pin; /**< "Chip Enable" pin, activates the RX or TX role */
     uint16_t csn_pin; /**< SPI Chip select */
     uint32_t spi_speed; /**< SPI Bus Speed */
@@ -133,6 +134,11 @@ public:
 
     #if defined (RF24_LINUX)
     virtual ~RF24() {};
+    #endif
+
+    #if !defined(SOFTSPI) && !defined(SPI_UART)
+    RF24(uint16_t _cepin, uint16_t _cspin,SPIClass *_spi);
+    
     #endif
 
     /**
