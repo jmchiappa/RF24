@@ -64,7 +64,7 @@ if (role == 1)  {
     radio.startListening();                                    // Now, continue listening
     
     unsigned long started_waiting_at = micros();               // Set up a timeout period, get the current microseconds
-    boolean timeout = false;                                   // Set up a variable to indicate if a response was received or not
+    bool timeout = false;                                   // Set up a variable to indicate if a response was received or not
     
     while ( ! radio.available() ){                             // While nothing is received
       if (micros() - started_waiting_at > 200000 ){            // If waited longer than 200ms, indicate timeout and exit while loop
