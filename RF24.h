@@ -287,6 +287,7 @@ public:
      */
 
     void openWritingPipe(const uint8_t* address);
+    void openWritingPipe(const char* address);
 
     /**
      * Open a pipe for reading
@@ -317,6 +318,7 @@ public:
      */
 
     void openReadingPipe(uint8_t number, const uint8_t* address);
+    void openReadingPipe(uint8_t number, const char* address);
 
     /**@}*/
     /**

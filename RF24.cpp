@@ -1146,6 +1146,10 @@ void RF24::openWritingPipe(uint64_t value)
 }
 
 /****************************************************************************/
+void RF24::openWritingPipe(const char* address) {
+    openWritingPipe((const uint8_t *)address);
+}
+
 void RF24::openWritingPipe(const uint8_t* address)
 {
     // Note that AVR 8-bit uC's store this LSB first, and the NRF24L01(+)
@@ -1205,6 +1209,10 @@ void RF24::setAddressWidth(uint8_t a_width)
 }
 
 /****************************************************************************/
+
+void RF24::openReadingPipe(uint8_t child, const char* address) {
+    openReadingPipe(child, (const uint8_t *)address);
+}
 
 void RF24::openReadingPipe(uint8_t child, const uint8_t* address)
 {
